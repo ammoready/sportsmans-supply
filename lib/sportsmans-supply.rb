@@ -7,6 +7,7 @@ require 'tempfile'
 require 'sportsmans-supply/base'
 require 'sportsmans-supply/catalog'
 require 'sportsmans-supply/inventory'
+require 'sportsmans-supply/invoice'
 require 'sportsmans-supply/order'
 require 'sportsmans-supply/user'
 
