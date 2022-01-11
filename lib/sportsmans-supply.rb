@@ -9,6 +9,7 @@ require 'sportsmans-supply/catalog'
 require 'sportsmans-supply/inventory'
 require 'sportsmans-supply/invoice'
 require 'sportsmans-supply/order'
+require 'sportsmans-supply/shipping'
 require 'sportsmans-supply/user'
 
 module SportsmansSupply
