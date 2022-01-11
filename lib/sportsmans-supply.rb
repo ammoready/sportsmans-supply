@@ -8,6 +8,7 @@ require 'sportsmans-supply/base'
 require 'sportsmans-supply/catalog'
 require 'sportsmans-supply/inventory'
 require 'sportsmans-supply/order'
+require 'sportsmans-supply/user'
 
 module SportsmansSupply
   class InvalidOrder < StandardError; end
