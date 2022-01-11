@@ -6,12 +6,12 @@ module SportsmansSupply
       @options = options
     end
 
-    def self.fulfilled_po_numbers(options = {})
+    def self.all(options = {})
       requires!(options, :username, :password)
       new(options).all
     end
 
-    def fulfilled_po_numbers
+    def all
       invoice_filename = connect(@options) { |ftp| ftp.nlst('/invoices/invoices*.csv').last }.split('/').last
       invoice_file = get_file(invoice_filename, 'invoices')
 
@@ -25,7 +25,10 @@ module SportsmansSupply
           next
         end
 
-        invoice_data << row[@headers.index('order number')]
+        invoice_data << {
+          po_number:      row[@headers.index('order number')],
+          invoice_number: row[@headers.index('invoice number')]
+        }
       end
 
       invoice_file.close

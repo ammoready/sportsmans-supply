@@ -6,16 +6,16 @@ module SportsmansSupply
       @options = options
     end
 
-    def self.tracking_numbers(options = {})
+    def self.all(options = {})
       requires!(options, :username, :password)
-      new(options).tracking_numbers
+      new(options).all
     end
 
-    def tracking_numbers
+    def all
       tracking_filename = connect(@options) { |ftp| ftp.nlst('/shipping/tracking*.csv').last }.split('/').last
       tracking_file = get_file(tracking_filename, 'shipping')
 
-      tracking_data = {}
+      tracking_data = []
 
       File.open(tracking_file).each_with_index do |row, i|
         row = row.split(",").map(&:strip)
@@ -25,9 +25,10 @@ module SportsmansSupply
           next
         end
 
-        tracking_data[row[@headers.index('customer po#')]] = {
+        tracking_data << {
+          po_number:       row[@headers.index('customer po#')],
           tracking_number: row[@headers.index('tracking numbers')],
-          carrier: row[@headers.index('actual shipping carrier')]
+          carrier:         row[@headers.index('actual shipping carrier')]
         }
       end
 
