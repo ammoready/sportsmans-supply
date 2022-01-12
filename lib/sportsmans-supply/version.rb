@@ -1,3 +1,3 @@
 module SportsmansSupply
-  VERSION = '1.0.0'.freeze
+  VERSION = '1.0.0-pre'.freeze
 end
