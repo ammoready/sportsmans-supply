@@ -27,7 +27,7 @@ module SportsmansSupply
         end
 
         inventory_data[row[@headers.index('sku')]] = {
-          price: row[@headers.index('rapid retail price')],
+          price: row[@headers.index('rapid retail price')].to_f,
           quantity: row[@headers.index('qty')].to_i
         }
       end
@@ -52,8 +52,8 @@ module SportsmansSupply
           name:              description,
           quantity:          inventory_datum[:quantity],
           price:             inventory_datum[:price],
-          map_price:         row[@headers.index('map')],
-          msrp:              row[@headers.index('msrp')],
+          map_price:         row[@headers.index('map')].to_f,
+          msrp:              row[@headers.index('msrp')].to_f,
           brand:             row[@headers.index('manufacturer')],
           item_identifier:   sku,
           category:          row[@headers.index('category')],
