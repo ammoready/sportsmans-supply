@@ -27,7 +27,7 @@ module SportsmansSupply
         inventory_data << {
           item_identifier: row[@headers.index('sku')],
           quantity:        row[@headers.index('qty')].to_i,
-          price:           row[@headers.index('rapid retail price')].strip,
+          price:           row[@headers.index('rapid retail price')].to_f,
         }
       end
 
