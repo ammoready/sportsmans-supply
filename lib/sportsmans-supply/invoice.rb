@@ -14,7 +14,7 @@ module SportsmansSupply
     def all
       invoice_filename = connect(@options) { |ftp| ftp.nlst('/invoices/invoices*.csv').last }&.split('/')&.last
 
-      return {} if invoice_filename.nil?
+      return [] if invoice_filename.nil?
 
       invoice_file = get_file(invoice_filename, 'invoices')
       invoice_data = []
