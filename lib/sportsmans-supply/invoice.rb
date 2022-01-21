@@ -12,9 +12,11 @@ module SportsmansSupply
     end
 
     def all
-      invoice_filename = connect(@options) { |ftp| ftp.nlst('/invoices/invoices*.csv').last }.split('/').last
-      invoice_file = get_file(invoice_filename, 'invoices')
+      invoice_filename = connect(@options) { |ftp| ftp.nlst('/invoices/invoices*.csv').last }&.split('/')&.last
 
+      return {} if invoice_filename.nil?
+
+      invoice_file = get_file(invoice_filename, 'invoices')
       invoice_data = []
 
       File.open(invoice_file).each_with_index do |row, i|
